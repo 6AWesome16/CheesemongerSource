@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class stateMachine : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class stateMachine : MonoBehaviour {
     stretchCurd stretchScript;
     //enum is a list of possible states
     //enum is essentially an int
+    public Text myText;
+    public GameObject Curd;
     
     public enum CheeseState
     {
@@ -46,6 +49,7 @@ public class stateMachine : MonoBehaviour {
         stretchScript.enabled = false;
         //sets the default state
         currentState = CheeseState.Fill;
+        myText.text = "Hold Space to fill the pot with milk";
         Debug.Log("Current Script: Fill");
     }
 
@@ -60,6 +64,7 @@ public class stateMachine : MonoBehaviour {
                 //disables the current script
                 fillScript.enabled = false;
                 //changes the state
+                myText.text = "Left-click to turn on the heat and start the timer!";
                 Debug.Log("Current Script: Heat");
                 currentState = CheeseState.Heat;
             }
@@ -75,6 +80,7 @@ public class stateMachine : MonoBehaviour {
                 //disables current script
                 heatScript.enabled = false;
                 //changes the state
+                myText.text = "Press E to add citric acid, then lipase, then rennet";
                 Debug.Log("Current Script: Add");
                 currentState = CheeseState.Add;
             }
@@ -85,6 +91,7 @@ public class stateMachine : MonoBehaviour {
             if (addScript.rennetAdded)
             {
                 addScript.enabled = false;
+                myText.text = "Alternate pressing A then D to get three successful hits when the ball is in the meter";
                 Debug.Log("Current Script: Stir");
                 currentState = CheeseState.Stir;
             }        
@@ -95,6 +102,7 @@ public class stateMachine : MonoBehaviour {
             if (stirScript.stirDone)
             {
                 stirScript.enabled = false;
+                myText.text = "Click and drag the mouse across the curd to cut it";
                 Debug.Log("Current Script: Cut");
                 currentState = CheeseState.Cut;
             }
@@ -105,6 +113,7 @@ public class stateMachine : MonoBehaviour {
             if (cutScript.cutDone)
             {
                 cutScript.enabled = false;
+                myText.text = "Hold space to drain the whey from the curd";
                 Debug.Log("Current Script: Drain");
                 currentState = CheeseState.Drain;
             }
@@ -115,6 +124,8 @@ public class stateMachine : MonoBehaviour {
             if (drainScript.drainDone)
             {
                 drainScript.enabled = false;
+                Curd.GetComponent<SpriteRenderer>().enabled = true;
+                myText.text = "Hold A and D to stretch the curd horizontally, and then W and S to stretch it vertically";
                 Debug.Log("Current Script: Stretch");
                 currentState = CheeseState.Stretch;
             }
@@ -125,6 +136,7 @@ public class stateMachine : MonoBehaviour {
             if (stretchScript.stretched)
             {
                 stretchScript.enabled = false;
+                myText.text = "And Bam! you have some Mozzarella!";
                 Debug.Log("Mozzarella Done!");
             //    Load the Next Scene, with the Cheese Stats intact
             }

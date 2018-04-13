@@ -7,15 +7,16 @@ public class CheeseCover : MonoBehaviour {
     public float minScale;
     //maxScale is equal to the y scale of the empty parent object
     public float maxScale;
-    public float shrinkSpeed;
-    public float growSpeed;
+    //public float shrinkSpeed;
+    //public float growSpeed;
     public bool shrinking;
     public bool growing;
-    float height;
+    private float width;
+    public float lerpSpeed;
 
-	// Use this for initialization
-	void Start () {
-        height = shelf.transform.localScale.y;
+    // Use this for initialization
+    void Start () {
+        width = shelf.transform.localScale.x;
         //holds the state of the cover
         shrinking = true;
         growing = false;
@@ -28,15 +29,18 @@ public class CheeseCover : MonoBehaviour {
         {
             if (shrinking && Input.GetMouseButton(0))
             {
-                height -= 1f * Time.deltaTime * shrinkSpeed;
-                if (height <= minScale)
+                //old calculation
+                //width -=  Time.deltaTime * shrinkSpeed;
+                //new calculation with Lerp!
+                width = Mathf.Lerp(width, minScale, Time.deltaTime * lerpSpeed);
+                if (width <= minScale)
                 {
                     shrinking = false;
                 }
             }
-            shelf.transform.localScale = new Vector3(shelf.transform.localScale.x, height, shelf.transform.localScale.z);
+            shelf.transform.localScale = new Vector3(width, shelf.transform.localScale.y, shelf.transform.localScale.z);
         }
-        if (Input.GetMouseButtonUp(0) && shrinking == false && height <= minScale)
+        if (Input.GetMouseButtonUp(0) && shrinking == false && width <= minScale)
         {
             growing = true;
         }
@@ -45,16 +49,19 @@ public class CheeseCover : MonoBehaviour {
         {
             if (Input.GetMouseButton(0))
             {
-                height += 1f * Time.deltaTime * growSpeed;
-                if (height >= maxScale)
+                //old calculation
+                //width +=  Time.deltaTime * growSpeed;
+                //new calculation with Lerp!
+                width = Mathf.Lerp(width, maxScale, Time.deltaTime * lerpSpeed);
+                if (width >= maxScale)
                 {
 
                     growing = false;
                 }
             }
-            shelf.transform.localScale = new Vector3(shelf.transform.localScale.x, height, shelf.transform.localScale.z);
+            shelf.transform.localScale = new Vector3(width, shelf.transform.localScale.y, shelf.transform.localScale.z);
         }
-        if (Input.GetMouseButtonUp(0) && growing == false && height >= maxScale)
+        if (Input.GetMouseButtonUp(0) && growing == false && width >= maxScale)
         {
             shrinking = true;
         }

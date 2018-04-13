@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class beatRhythm : MonoBehaviour {
 
@@ -36,6 +37,8 @@ public class beatRhythm : MonoBehaviour {
 
     int stircount = 0;
 
+    public Text myText;
+
     void Start () {
 		//procedurally generate the hitzones
         for(int i = 0; i < hitZones; i++)
@@ -51,6 +54,7 @@ public class beatRhythm : MonoBehaviour {
 	}
 	
 	void Update () {
+        myText.text = stircount + "";
         //moves the ball at the speed of ball speed, up and down
         ball.position = new Vector2(ball.position.x, ball.position.y + ballSpeed * Time.deltaTime);
         //switch the ball's direction when it reaches the length of the bar
