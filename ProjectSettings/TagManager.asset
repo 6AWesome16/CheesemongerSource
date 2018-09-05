@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hit Zone
   - playerCircle
+  - pauseUI
   layers:
   - Default
   - TransparentFX
@@ -46,12 +47,12 @@ TagManager:
   - name: background
     uniqueID: 1890299525
     locked: 0
-  - name: milk
-    uniqueID: 1899640837
-    locked: 0
   - name: midground
     uniqueID: 1586372091
     locked: 0
   - name: foreground
     uniqueID: 1682415043
+    locked: 0
+  - name: milk
+    uniqueID: 1899640837
     locked: 0

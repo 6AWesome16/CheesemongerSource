@@ -6,5 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/MainMenu.unity
+    guid: 866cfaab4ff4afa4f9fb770d7358c087
+  - enabled: 1
+    path: Assets/ShopTime.unity
+    guid: 4eaba26bfb624774bb731bc367c148c9
+  - enabled: 1
     path: Assets/GotMilk.unity
     guid: e663d53638991174db4c5385c4470736
+  - enabled: 1
+    path: Assets/caveScreen.unity
+    guid: cf0d5b5ae6d9b364b922bcc23a6a5bb9
